@@ -1,0 +1,35 @@
+<body>
+	<div></div>
+  	<input type="text"></input>
+  	<button onclick="addTodo()">Add todo</button>
+  	<script>
+    		let todos = [];
+    		function addTodo() {
+      			todos.push(document.querySelector("input").value)
+      			render();
+    		}
+
+    		function deleteTodo(x) {
+			todos.splice(x,1); 
+      			render();
+    		}
+ 
+    		function render() {
+			mainDiv = document.querySelector("div")
+			mainDiv.innerHTML = ""
+			for (let i = 0; i < todos.length;i++) {
+				div = document.createElement("div")
+				heading = document.createElement("h3")
+	    			button = document.createElement("button")
+			
+				heading.innerHTML = (i+1)+"."+todos[i]
+				button.innerHTML = "Delete"
+				button.setAttribute("onclick","deleteTodo("+i+")")
+
+				div.appendChild(heading)
+				div.appendChild(button)
+				mainDiv.appendChild(div)
+			}
+    		}
+  	</script>
+</body>

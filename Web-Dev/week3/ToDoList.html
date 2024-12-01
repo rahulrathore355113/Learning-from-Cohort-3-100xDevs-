@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>ToDoList</title>
+  	</head>
+	<body>
+		<h1>To Do List</h1>
+		<div class="todo1">
+			<h3>1.Take class</h3>
+			<button onclick="deleteTodo(1)">Delete</button>
+		</div>
+		<div class="todo2">
+			<h3>2.Go out to eat</h3>
+			<button onclick="deleteTodo(2)">Delete</button>
+		</div>
+		<div class="insertTodo"></div>
+		<br>
+		<input type="text" placeholder="Add Todo Here"></input>
+		<button class="main_button" onclick="addTodo()">Add Todo</button>
+	</body>
+	<script>
+		let ctr=3
+		function addTodo() {
+			const div = document.querySelector(".insertTodo")
+			const valueToInsert = document.querySelector("input").value
+			
+			if (valueToInsert === "") {
+				alert("Please Enter a todo task")
+			}
+			else {
+				const newElement = document.createElement("div")
+				const newElement2 = document.createElement("h3")
+				const newElement3 = document.createElement("button")
+			
+				div.appendChild(newElement)
+				newElement.appendChild(newElement2)
+				newElement.appendChild(newElement3)
+
+				newElement.setAttribute("class","todo"+ctr)
+				newElement2.innerHTML = ctr+"."+valueToInsert 
+				newElement3.setAttribute("onclick","deleteTodo("+ctr+")")
+				newElement3.innerHTML = "delete"
+				ctr = ctr+1
+			}
+		}
+		function deleteTodo(x) {
+			const el = document.querySelector(`.todo${x}`)
+			el.parentNode.removeChild(el)
+		}	
+	</script>		
+</html>
